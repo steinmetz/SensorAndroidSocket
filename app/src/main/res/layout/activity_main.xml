@@ -20,11 +20,34 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtValue"
+                android:layout_gravity="center_horizontal"
+                android:text="Meu IP" />
+
+            <TextView
+                android:id="@+id/txtIP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="..." />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/containers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
                 android:id="@+id/textView"
                 style="@style/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv"
+                android:layout_below="@+id/txtValue"
                 android:layout_gravity="center_horizontal"
                 android:text="Status" />
 
@@ -71,7 +94,7 @@
                 style="@style/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv"
+                android:layout_below="@+id/txtValue"
                 android:layout_gravity="center_horizontal"
                 android:text="Porta" />
 
@@ -89,6 +112,7 @@
             android:layout_height="wrap_content"
             android:text="Start"
             android:onClick="start"
+            android:tag="start"
             android:id="@+id/btnStart"
             android:layout_gravity="center_horizontal" />
         <LinearLayout
@@ -102,12 +126,12 @@
                 style="@style/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv"
+                android:layout_below="@+id/txtValue"
                 android:layout_gravity="center_horizontal"
                 android:text="Valor Sensor" />
 
             <TextView
-                android:id="@+id/tv"
+                android:id="@+id/txtValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
