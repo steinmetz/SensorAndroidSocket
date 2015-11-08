@@ -4,11 +4,16 @@ import android.content.Context;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -27,6 +32,7 @@ public class Sensor implements SensorEventListener {
     private TextView txtLog;
     private TextView txtValue;
     private boolean runningServer = true;
+    private int valueIndex = 2;
 
 
     public Sensor(Context ctx) {
@@ -42,13 +48,12 @@ public class Sensor implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         //Orientation X (Roll)
-        if (Math.abs(value - event.values[2]) > 2) {
-            value = event.values[2];
+        if (Math.abs(value - event.values[valueIndex]) > 2) {
+            value = event.values[valueIndex];
             if (txtValue != null) {
                 txtValue.setText("X: " + getValue());
             }
         }
-
     }
 
     @Override
@@ -73,44 +78,51 @@ public class Sensor implements SensorEventListener {
         if (type.equals("TCP")) {
             ServerSocket serverSocket = null;
 
-            try {
-                serverSocket = new ServerSocket(port);
-            } catch (IOException e) {
-                txtLog.setText("Could not listen on port:" + port);
-                System.exit(1);
-            }
-
-            Socket socket = null;
-
+            Gson gson = new Gson();
             try {
                 while (runningServer) {
+                    serverSocket = new ServerSocket(port);
+
+                    Socket socket = null;
+
                     socket = serverSocket.accept();
 
                     PrintWriter out = new PrintWriter(socket.getOutputStream(),
                             true);
-                    out.println(getValue());
+                    BufferedReader in = new BufferedReader(
+                            new InputStreamReader(socket.getInputStream()));
+
+                    String sentence = in.readLine();
+                    Message msg = gson.fromJson(sentence, Message.class);
+                    if(msg.type == Message.CONTROLE){
+                        try {
+                            setValueIndex(new Double((Double) msg.value).intValue());
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                    Message<Message.Value> response = new Message();
+                    response.setValue(valueIndex, getValue());
+                    out.println(gson.toJson(response));
                     out.close();
+                    socket.close();
+                    serverSocket.close();
                 }
-            } catch (IOException e) {
-                System.exit(1);
-            }
-            try {
-                socket.close();
-                serverSocket.close();
+
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.i("charles", e.getMessage());
             }
             // UDP
         } else {
             try {
-                DatagramSocket serverSocket = new DatagramSocket(port);
+
                 byte[] receiveData = new byte[10];
                 byte[] sendData = new byte[10];
-                while(runningServer)
-                {
+                DatagramSocket serverSocket = new DatagramSocket(port);
+                while (runningServer) {
                     DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                     serverSocket.receive(receivePacket);
-                    String sentence = new String( receivePacket.getData());
+                    String sentence = new String(receivePacket.getData());
                     InetAddress IPAddress = receivePacket.getAddress();
                     int portCli = receivePacket.getPort();
                     sendData = String.valueOf(getValue()).getBytes();
@@ -119,10 +131,16 @@ public class Sensor implements SensorEventListener {
                     serverSocket.send(sendPacket);
                 }
                 serverSocket.close();
+
             } catch (Exception e) {
-                txtLog.setText(e.getMessage());
+                Log.i("charles", e.getMessage());
             }
         }
+    }
+
+    public void setValueIndex(int valueIndex){
+        this.valueIndex = valueIndex;
+        value =0;
     }
 
     public void stopServer() {

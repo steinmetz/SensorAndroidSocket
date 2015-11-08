@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_atuador">AtuadorActivity</string>
+    <string name="title_activity_menu_inicial">MenuInicialActivity</string>
+    <string name="title_activity_trab7">Trab7Activity</string>
+    <string name="title_activity_controle_actvity">ControleActvity</string>
 </resources>

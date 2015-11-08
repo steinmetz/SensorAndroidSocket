@@ -1,0 +1,291 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/llcores"></LinearLayout>
+
+        <LinearLayout
+            style="@style/containers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtValue"
+                android:layout_gravity="center_horizontal"
+                android:text="Meu IP" />
+
+            <TextView
+                android:id="@+id/txtT7IP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="..." />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/containers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView4"
+                android:layout_gravity="center_horizontal"
+                android:text="TCP/UDP" />
+
+            <Spinner
+                android:id="@+id/T7CPUPD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:entries="@array/tcpupd"
+                android:text="@string/hello_world" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#efefef"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/containers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtValue"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Porta" />
+
+                <EditText
+                    android:id="@+id/edtT7PortaAt"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="9000" />
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn7StartAt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:onClick="startAtuador"
+                android:tag="start"
+                android:text="Start" />
+
+            <LinearLayout
+                style="@style/containers"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text7View3"
+                    style="@style/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtValue"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Atuação" />
+
+                <TextView
+                    android:id="@+id/txtT7Atuacao"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/hello_world" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#efefaf"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            >
+
+            <LinearLayout
+                style="@style/containers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtValue"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Porta" />
+
+                <EditText
+                    android:id="@+id/edtT7PortaSe"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="9000" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start"
+                android:onClick="startSensor"
+                android:tag="start"
+                android:id="@+id/btn7StartSe"
+                android:layout_gravity="center_horizontal" />
+            <LinearLayout
+                style="@style/containers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    style="@style/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtValue"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Valor Sensor" />
+
+                <TextView
+                    android:id="@+id/txtValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/hello_world" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:background="#f4efef"
+            >
+
+            <LinearLayout
+                style="@style/containers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    style="@style/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtValue"
+                    android:layout_gravity="center_horizontal"
+                    android:text="IP (S)"  />
+
+                <EditText
+                    android:id="@+id/edt7IPSeC"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="192.168.0.1"
+                    android:layout_weight="0.66" />
+                <TextView
+                    style="@style/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtValue"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Porta (S)" />
+
+                <EditText
+                    android:id="@+id/edt7PortaSeC"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="9000"
+                    android:layout_weight="0.11" />
+
+            </LinearLayout>
+            <LinearLayout
+                style="@style/containers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    style="@style/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtValue"
+                    android:layout_gravity="center_horizontal"
+                    android:text="IP (A)"  />
+
+                <EditText
+                    android:id="@+id/edt7IPAtC"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="192.168.0.1"
+                    android:layout_weight="0.66" />
+                <TextView
+                    style="@style/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtValue"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Porta (A)" />
+
+                <EditText
+                    android:id="@+id/edt7PortaAtC"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="9000"
+                    android:layout_weight="0.11" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
